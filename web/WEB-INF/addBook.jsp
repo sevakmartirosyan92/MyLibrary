@@ -17,7 +17,7 @@
     List<Author> authorList = (List<Author>) request.getAttribute("authors");
 %>
 
-<form method="post" action="/book/add">
+<form method="post" action="/book/add" style="color: chartreuse">
     <input type="text" name="title" placeholder="title">
     <input type="text" name="description" placeholder="description">
     <input type="number" name="price" placeholder="price">

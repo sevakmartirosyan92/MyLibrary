@@ -15,7 +15,7 @@
   Author author = (Author) request.getAttribute("author");
 %>
 
-<form method="post" action="/author/edit">
+<form method="post" action="/author/edit" style="background: chartreuse" aria-atomic="true">
   <input type="hidden" name="authorId" value="<%=author.getId()%>">
   <input type="text" name="name" value="<%=author.getName()%>">
   <input type="text" name="surname" value="<%=author.getSurname()%>">

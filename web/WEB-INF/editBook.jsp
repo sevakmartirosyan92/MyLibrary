@@ -18,8 +18,7 @@
   Book book = (Book) request.getAttribute("book");
   List<Author> authorList = (List<Author>) request.getAttribute("authors");
 %>
-
-<form method="post" action="/book/edit">
+<form method="post" action="/book/edit" target="_blank" style="color: chartreuse">
   <input type="hidden" name="bookId" value="<%=book.getId()%>">
   <input type="text" name="title" value="<%=book.getTitle()%>">
   <input type="text" name="description" value="<%=book.getDescription()%>">

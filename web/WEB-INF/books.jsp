@@ -18,7 +18,7 @@
     List<Book> bookList = (List<Book>) request.getAttribute("books");
 %>
 
-<table border="1px">
+<table border="1px" style="color: #51048b">
 
     <tr>
         <th>title</th>

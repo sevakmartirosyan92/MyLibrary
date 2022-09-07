@@ -17,7 +17,7 @@
     List<Author> authorList = (List<Author>) request.getAttribute("authors");
 %>
 
-<table border="1px">
+<table border="1px" style="color: #052881">
     <tr>
         <th>id</th>
         <th>name</th>

@@ -14,7 +14,7 @@
     </head>
 <body>
 
-<form method="post" action="/author/add">
+<form method="post" action="/author/add" style="background: chartreuse">
     <input type="text" name="name" placeholder="name">
     <input type="text" name="surname" placeholder="surname">
     <input type="email" name="email" placeholder="email">
