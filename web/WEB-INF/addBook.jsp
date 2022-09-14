@@ -17,18 +17,23 @@
     List<Author> authorList = (List<Author>) request.getAttribute("authors");
 %>
 
-<form method="post" action="/book/add" style="color: chartreuse">
-    <input type="text" name="title" placeholder="title">
-    <input type="text" name="description" placeholder="description">
-    <input type="number" name="price" placeholder="price">
+<form method="post" action="/book/add"  enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="title"><br><br>
+    <input type="text" name="description" placeholder="description"><br><br>
+    <input type="number" name="price" placeholder="price"><br><br>
 
     <select name="authorId">
         <%for (Author author : authorList) {%>
-        <option value="<%=author.getId()%>"><%=author.getName() + " " + author.getSurname() + " " + author.getEmail()%></option>
+        <option value="<%=author.getId()%>"><%=author.getName() + " " + author.getSurname() + " " + author.getEmail()%>
+        </option>
         <%}%>
     </select>
+    <br><br><br>
+    Profile Picture:<br><br>
+    <input type="file" name="profilePic">
 
-    <input type="submit" value="add">
+
+    <input type="submit" value="register">
 </form>
 </body>
 </html>

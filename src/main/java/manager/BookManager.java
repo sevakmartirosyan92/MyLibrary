@@ -3,11 +3,9 @@ package manager;
 
 import com.sun.istack.internal.NotNull;
 import db.DBConnectionProvider;
-import model.Author;
 import model.Book;
 
 import java.sql.*;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +16,14 @@ public class BookManager {
     private final AuthorManager authorManager = new AuthorManager();
 
     public void addBook(Book book) {
-        String sql = "INSERT INTO book(title, description, price, author_id) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO book(title, `description`, price, author_id , profile_pic) VALUES(?,?, ?, ?, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getDescription());
             ps.setDouble(3, book.getPrice());
             ps.setInt(4, book.getAuthor().getId());
+            ps.setString(5, book.getProfilePic());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,6 +43,7 @@ public class BookManager {
                         .description(resultSet.getString(3))
                         .price(resultSet.getDouble(4))
                         .author(authorManager.getAuthorById(resultSet.getInt(5)))
+                         .profilePic(resultSet.getString(6))
                         .build();
                 bookList.add(book);
             }
@@ -65,7 +65,7 @@ public class BookManager {
 
 
     public void edit(@NotNull Book book) {
-        String sql = "UPDATE book SET title=?, description=?, price=?, author_id=? WHERE id=?";
+        String sql = "UPDATE book SET title=?, description=?, price=?, author_id=?, profile_pic=? WHERE id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, book.getTitle());
@@ -73,6 +73,7 @@ public class BookManager {
             ps.setDouble(3, book.getPrice());
             ps.setInt(4, book.getAuthor().getId());
             ps.setInt(5, book.getId());
+            ps.setString(6, book.getProfilePic());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,13 +86,7 @@ public class BookManager {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                return Book.builder()
-                        .id(resultSet.getInt(1))
-                        .title(resultSet.getString(2))
-                        .description(resultSet.getString(3))
-                        .price(resultSet.getDouble(4))
-                        .author(authorManager.getAuthorById(resultSet.getInt(5)))
-                        .build();
+                return Book.builder().id(resultSet.getInt(1)).title(resultSet.getString(2)).description(resultSet.getString(3)).price(resultSet.getDouble(4)).author(authorManager.getAuthorById(resultSet.getInt(5))).build();
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -19,8 +19,8 @@
 %>
 
 <table border="1px" style="color: #51048b">
-
     <tr>
+        <th>image</th>
         <th>title</th>
         <th>description</th>
         <th>price</th>
@@ -30,10 +30,21 @@
 
     <%for (Book book : bookList) {%>
     <tr>
-        <td><%=book.getTitle()%></td>
-        <td><%=book.getDescription()%></td>
-        <td><%=book.getPrice()%></td>
-        <td><%=book.getAuthor()%></td>
+        <td>
+            <%if (book.getProfilePic()==null || book.getProfilePic().length() ==0){%>
+            <img src="/image/defaultProfilePic.png" width="100"/>
+            <%} else {%>
+            <img src="/getImage?profilePic=<%=book.getProfilePic()%>" width="100"/>
+            <%}%>
+        </td>
+        <td><%=book.getTitle()%>
+        </td>
+        <td><%=book.getDescription()%>
+        </td>
+        <td><%=book.getPrice()%>
+        </td>
+        <td><%=book.getAuthor()%>
+        </td>
         <td><a href="/book/remove?bookId=<%=book.getId()%>">remove</a></td>
         <td><a href="/book/edit?bookId=<%=book.getId()%>">edit</a></td>
     </tr>

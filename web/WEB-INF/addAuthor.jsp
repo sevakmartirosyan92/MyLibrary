@@ -14,12 +14,30 @@
     </head>
 <body>
 
-<form method="post" action="/author/add" style="background: chartreuse">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="surname" placeholder="surname">
-    <input type="email" name="email" placeholder="email">
-    <input type="number" name="age" placeholder="age">
-    <input type="submit" value="add">
+<%
+    String msg = (String) request.getAttribute("msg");
+%>
+<%if (msg != null) {%>
+<p style="color: red"><%=msg%>
+</p>
+<%}%>
+
+
+<form method="post" action="/author/add" style="background: chartreuse" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="name"><br><br>
+    <input type="text" name="surname" placeholder="surname"><br><br>
+    <input type="email" name="email" placeholder="email"><br><br>
+    <input type="number" name="age" placeholder="age"><br><br>
+    <input type="password" name="password" placeholder="Please input password"><br>
+    <select name="author_role">
+        <option value="ADMIN">Admin</option>
+        <option value="AUTHOR">Author</option>
+    </select>
+
+    Profile picture:
+    <input type="file" name="profilePicture">
+
+    <input type="submit" value="register">
 </form>
 </body>
 </html>
